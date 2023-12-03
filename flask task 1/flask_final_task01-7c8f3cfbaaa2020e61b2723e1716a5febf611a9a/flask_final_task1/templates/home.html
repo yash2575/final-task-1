@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    .addButton {
+      background-color: #ba0082;
+      border: none;
+      color: rgba(255, 255, 255, 0.574);
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 5%;
+    }
+    .notCompleteButton {
+      background-color: #e7e7e7;
+      border: none;
+      color: black;
+      padding: 8px 25px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 5%;
+    }
+    .updateButton {
+      background-color: #8800ba;
+      border: none;
+      color: white;
+      padding: 13px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 5%;
+    }
+    .deleteButton {
+      background-color: #f44336;
+      border: none;
+      color: white;
+      padding: 13px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 5%;
+    }
+    .titleTextAndInput {
+      line-height: 0px;
+      height: 30px;
+      width: 83%;
+    }
+    .dividerLine {
+      width: 71%;
+      margin-left: 15%;
+      border: 0.1px solid rgb(149, 127, 127);
+    }
+    .renderedList {
+      width: 70%;
+      margin-left: 15%;
+      padding-left: 20px;
+      padding-bottom: 10px;
+      margin-bottom: 5px;
+      border: 0.5px solid rgb(229, 209, 209);
+    }
+    .todoHeading {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .todoTitleText {
+      line-height: 0px;
+      font-family: "Lucida Console", "Courier New", monospace;
+    }
+    .formClass {
+      margin-left: 15%;
+    }
+  </style>
+  <body>
+    <div style="margin-top: 50px;" class="">
+      <h1 class="todoHeading">My Todo App</h1>
+
+      <!-- input form -->
+      <form class="formClass" action="/add" method='post'>
+          <div>
+              <label class="todoTitleText">Todo Title</label><br><br>
+              <input class="titleTextAndInput" type="text" name="title" placeholder="Enter Todo..."><br>
+          </div><br>
+          <button class="addButton" type="submit">Create</button>
+      </form>
+      <!-- <a href="/clear"><button class="updateButton" type="submit">Clear All</button></a> -->
+
+      <hr class="dividerLine">
+
+      <!-- render todo list -->
+      {% for row in test %}
+      <div class="renderedList">
+          <p>{{ row[0] }} | {{ row[1] }}</p>
+
+          {%  if row[2] == 0 %}
+            <span class="notCompleteButton">Not Complete</span>
+            {% else %}
+            <span class="notCompleteButton">Completed</span>
+          {% endif %}
+
+  <a href="/update/{{ row[0] }}"><button class="updateButton" type="submit">Update</button></a>
+          <a href="/delete/{{ row[0] }}"><button class="deleteButton" type="submit">Delete</button></a>
+      </div>
+      {% endfor %}
+    </div>
+    
+  </body>
+</html>
+
+         
